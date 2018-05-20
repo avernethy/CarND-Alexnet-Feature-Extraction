@@ -13,7 +13,8 @@ from alexnet import AlexNet
 x = tf.placeholder(tf.float32, (None, 32, 32, 3))
 # TODO: Resize the images so they can be fed into AlexNet.
 # HINT: Use `tf.image.resize_images` to resize the images
-resized = ...
+new_size = tf.constant([227,227],tf.int32)
+resized = tf.image.resize_images(x,new_size)
 
 assert resized is not Ellipsis, "resized needs to modify the placeholder image size to (227,227)"
 probs = AlexNet(resized)
