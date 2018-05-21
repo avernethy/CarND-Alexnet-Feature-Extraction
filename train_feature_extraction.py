@@ -41,7 +41,13 @@ loss_operation = tf.reduce_mean(cross_entropy)
 optimizer = tf.train.AdamOptimizer(learning_rate = rate)
 training_operation = optimizer.minimize(loss_operation)
 
+
 #Model Evaluation
+correct_prediction = tf.equal(tf.argmax(logits, 1), tf.argmax(one_hot_y,1))
+accuracy_operation = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+saver = tf.train.Saver()
+
+
 def evaluate(X_data, y_data):
     num_examples = len(X_data)
     total_accuracy = 0
